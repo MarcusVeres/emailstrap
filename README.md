@@ -11,6 +11,6 @@ Requirements:
 
 Instructions:
 
-**Watching a folder** 
+**Watching a folder**  
     jade --watch path/to/folder/*.jade --out path/to/outpput/folder
 
