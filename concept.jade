@@ -1,0 +1,93 @@
+
+
+- // vars
+
+- var body = 'background: cornflower; padding: 0; margin: 0;';
+
+- var parent_table = 'width: 100%; background: #eee; text-align: center;'; 
+- var inner_table = 'width: 640px;'; 
+- var full_table = 'width: 100%;';
+
+- var td_padded = 'padding: 20px; ';
+- var td_full = 'text-align: center; background: teal; text: white; width: 100%; ';
+- var td_half = 'width: 50%; background: white; padding: 10px; ';
+- var td_third = 'width: 33%; background: white; padding: 10px; ';
+
+
+- // mixins 
+
+mixin table_test
+  <table cellpadding="0" cellspacing="0">
+  <tr>
+  <td>cell</td>
+  <tr>
+  </table>
+
+mixin full_table
+  table( style = full_table cellpadding="0" cellspacing="0" align="center")
+    block
+
+mixin inner_table
+  table( style = inner_table cellpadding="0" cellspacing="0" align="center")
+    block
+
+mixin full_cell
+  td( style = td_full )
+    if block
+      block
+    else 
+      p no content provided
+
+mixin half_cell
+  td( style = td_half )
+    block
+
+mixin triad
+  td( style = td_thirds )
+    block
+
+
+- // content
+
+doctype transitional
+html( lang = "en" ) 
+
+head
+  meta( name='Content-Type', content='text/html; charset=UTF-8' )
+  meta( name='viewport' content="width=device-width, initial-scale=1.0" ) 
+
+body( style = "margin: 0; padding: 0;" )
+
+  table( style = parent_table )
+    tr
+      td
+        +inner_table
+          tr
+            +full_cell
+              p this is a header
+          tr
+            td
+              +full_table
+                tr
+                  +half_cell
+                    p this is a half-thingy
+                  +half_cell
+                    p this is a another half-thingy
+          tr
+            +full_cell
+              p this is an interstitial
+          tr
+            td
+              +full_table
+                tr
+                  +triad
+                    p thirds
+                  +triad
+                    p thirds
+                  +triad
+                    p thirds
+          tr
+            td( style = td_padded + td_full ) 
+              p
+                This is a footer
+
